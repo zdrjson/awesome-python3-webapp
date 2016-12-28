@@ -525,13 +525,130 @@ print((0,1,2,3,4,5)[:3])
 print('ABCDEFG'[:3])
 print('ABCDEFG'[::2])
 
+d = {'a':1,'b':2,'c':3}
+for key in d:
+	print(key)
+	
+for value in d.values():
+    print(value)
+
+for k, v in d.items():
+   print(k,v)
+
+
+for ch in 'ABC':
+	print(ch)
+	
+	
+	
+from collections import Iterable
+    
+print( isinstance('abc', Iterable))
+print(isinstance([123], Iterable))
+print(isinstance(123, Iterable))
+
+for i , value in enumerate(['A','B','c']):
+	print(i, value)
+	
+	
+for x, y in [(1, 1),(2,4),(3,9)]:	
+     print(x,y)
 
 
 
+print(list(range(1,11)))
+
+print([x * x for x in range(1, 11)])
+   
+print([x * x for x in range(1, 11) if x % 2 == 0])
+
+mn = [m + n for m in 'ABC' for n in 'XYZ']
+print(mn)
 
 
-
-
+import os
+dd = [d for d  in os.listdir('.')]
+print(dd)
 	
 
+d = {'x':'A','y':'B','z':'C'}
+for k, v in d.items():
+	print(k,'=',v)
+print([k + '=' + v for k, v in d.items()])	
+
+L = ['Hello','World','IBM','Apple']
+print([s.lower() for s in L])
+
+x = 'abc'
+y = 123
+print(isinstance(x,str))
+print(isinstance(y,str))
+
+
+g = (x * x for x in range(10))
+for n in g:
+	print(n)
+
+
+def fib(max):
+	n, a, b = 0, 0, 1
+	while n < max:
+		print(b)
+		a, b = b, a + b
+		n = n + 1
+	return 'done'
+	
+
+print(fib(6))
+
+
+def fib(max):
+	n, a, b = 0, 0, 1
+	while n < max:
+		yield b
+		a, b = b, a+b
+		n = n + 1
+	return 'done'
+		
+
+for n in fib(6):
+    print(n)
+g = fib(6)
+while True:
+	try:
+		x = next(g)
+		print('g:',x)
+	except StopIteration as e:
+		print('Generator return value:', e.value)	
+		break
+	
+from collections import Iterable
+print(isinstance([], Iterable))
+print(isinstance({}, Iterable))
+print(isinstance('abc', Iterable))
+print(isinstance((x for x in range(10)), Iterable))
+print(isinstance(100, Iterable))
+
+
+from collections import Iterator
+print(isinstance((x for x in range(10)), Iterator))
+print(isinstance([], Iterator))
+print(isinstance({}, Iterator))
+print(isinstance('abc',Iterator))
+
+
+print(isinstance(iter([]), Iterator ))
+print(isinstance(iter('abc'), Iterator))
+
+
+# 首先获得Iterator对象
+it = iter([1,2,3,4,5])
+# 循环
+while True:
+	try:
+		# 获得下一个值：
+		x = next(it)
+	except StopIteration:
+		# 遇到StopIteration就退出循环
+		break
 	
