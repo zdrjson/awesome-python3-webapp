@@ -651,4 +651,182 @@ while True:
 	except StopIteration:
 		# 遇到StopIteration就退出循环
 		break
+		
+
+
+f = abs
+print(f(-10))
+
+
+def add(x, y, f):
+	return f(x) + f(y)
+	
+print(add(-5, 6, abs))
+
+def f(x):
+	return x * x
+	
+r = map(f, [1,2,3,4,5,6,7,8,9])
+
+print(list(r))
+
+
+print(list(map(str, [1,2,3,4,5,6,7,8,9])))
+
+from functools import reduce
+
+def add(x, y):
+	return x + y
+print(reduce(add,[1,3,5,7,9]))
+
+
+def fn(x, y):
+	return x * 10 + y
+print(reduce(fn, [1,3,5,7,9]))
+
+
+def char2num(s):
+	return {'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'0':0,'8':8,'9':9}[s]
+print(reduce(fn, map(char2num, '13579')))
+
+
+
+
+def str2int(s):
+	def fn(x, y):
+		return x * 10 + y
+	def char2num(s):
+		return {'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'0':0,'8':8,'9':9}[s]
+	return reduce(fn, map(char2num, s))
+	
+def char2num(s):
+    return {'0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'0':0,'8':8,'9':9}[s]
+def str2int(s):
+	return reduce(lambda x, y: x * 10 + y, map(char2num, s))
+	
+
+def is_odd(n):
+	return n % 2 == 1
+	
+	
+	
+print(list(filter(is_odd, [1,2,4,5,6,9,10,15])))
+
+
+def not_empty(s):
+	return s and s.strip()
+l = list(filter(not_empty, ['A','','B',None,'C','  ']))
+print(l)
+
+
+print(sorted([36,5,-12,9,-21]))
+print(sorted([36,5,-12,9,-21],key=abs))
+print(sorted(['Bob','about','Zoo','Credit']))
+print(sorted(['bob','about','Zoo','Credit'], key=str.lower, reverse=True))
+
+
+def calc_sum(*args):
+	ax = 0
+	for n in args:
+		ax = ax + n
+	return ax
+	
+	
+def lazy_sum(*args):
+	def sum():
+		ax = 0
+		for n in args:
+			ax = ax + n
+		return ax
+	return sum
+f = lazy_sum(1,3,5,7,9)
+
+print(f)
+print(f())
+
+f1 = lazy_sum(1,3,5,7,9)
+f2 = lazy_sum(1,3,5,7,9)
+print(f1==f2)
+
+
+def count():
+	def f(j):
+		def g():
+			return j*j
+		return g
+	fs = []
+	for i in range(1,4):
+	    fs.append(f(i))
+	return fs
+	
+f1 ,f2 ,f3 = count()
+print(f1(), f2(),f3())
+
+l = list(map(lambda x: x * x, [1,2,3,4,5,6,7,8,9]))
+print(l)
+
+
+def f(x):
+	return x * x
+	
+f = lambda x: x * x
+print(f(5))
+def build(x, y):
+	return lambda: x * x + y * y
+	
+	
+def now():
+	print('2015-3-25')
+f = now()
+print(now.__name__)
+
+	
+def log(func):
+	def wrapper(*args, **kw):
+		print('call %s():' % func.__name__)
+		return func(*args, **kw)
+	return wrapper
+    
+
+@log
+def now():
+	print('2015-3-25')
+now()
+
+
+def log(text):
+	def decorator(func):
+		def wrapper(*args, **kw):
+			print('%s %s():' % (text, func.__name__))
+			return func(*args, **kw)
+		return wrapper
+	return decorator
+
+
+@log('execute')
+def now():
+	print('2015-3-25')
+	
+now()
+	
+now = log('execute')(now)
+print(now.__name__)
+
+
+import functools
+
+def log(func):
+	@functools.wraps(func)
+	def wrapper(*arg, **kw):
+		print('call %s():' % func.__name__)
+		return func(*args, **kw)
+	return wrapper
+#def log(text):
+	
+
+
+
+
+
+		
 	
