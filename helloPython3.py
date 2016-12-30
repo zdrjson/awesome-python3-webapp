@@ -821,9 +821,28 @@ def log(func):
 		print('call %s():' % func.__name__)
 		return func(*args, **kw)
 	return wrapper
-#def log(text):
 	
+def log(text):
+	def decorator(func):
+	    @functools.wraps(func)
+	    def wrapper(*args, **kw):
+		    print('%s %s():'  % (text, func.__name__))
+		    return func(*args, **kw)
+	    return wrapper
+	return decorator
+    
 
+def int2(x, base=2):
+	return int(x, base)	
+print(int2('1000000'))
+print(int2('1010101'))
+
+
+import functools
+int2 = functools.partial(int, base=2)
+
+max2 = functools.partial(max, 10)
+print(max2(5,6,7))
 
 
 
