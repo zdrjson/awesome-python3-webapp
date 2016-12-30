@@ -852,15 +852,185 @@ class Student(object):
 		
 	def print_score(self):
 		print('%s: %s' % (self.name, self.score))
+		
+	def get_grade(self):
+		if self.score >= 90:
+			return 'A'
+		elif self.score >= 60:
+			return 'B'
+		else:
+			return 'C'
 
 bart = Student('Bart Simpson', 59)
 lisa = Student('Lisa Simpson', 87)
 
 bart.print_score()
 lisa.print_score()
+print(bart.get_grade())
+
+bart.age = 8
+print(bart.age)
+#print(lisa.age)
+
+
+class Student(object):
+	def __init__(self, name, score):
+		self.__name = name
+		self.__scrore = score
+	def print_score(self):
+		print('%s: %s' % (self.__name,self.__scrore))
+		
+	def get_name(self):
+		return self.__name
+	def get_score(self):
+		return self.__scrore
+
+#    def set_score(self, score):		
+#
+#	    if 0 <= score <= 100:
+#	    self.__scrore = score
+#	    else:
+#		     raise ValueError('bad score')
+
+	
+bart = Student('Bart Simpson', 59)
+print(bart._Student__name)
+bart = Student('Bart Simpson', 98)
+print(bart.get_name())
+bart.__name = 'New Name'
+print(bart.__name)
+
+
+print(bart.get_name())
 
 
 	
+class Animal(object):
+	def run(self):
+		print('Animal is running')
+class Dog(Animal):
+	def run(self):
+		print('Dog is running')
+	def eat(self):
+		print('Eating meat...')
+	
+class Cat(Animal):
+    def run(self):
+	    print('Cat is running...')
+    
+
+dog = Dog()
+dog.run()
+
+
+cat = Cat()
+cat.run()
+
+		
+a = list()
+b = Animal()
+c = Dog()
+print(isinstance(a, list))
+print(isinstance(b, Animal))
+print(isinstance(c, Animal))
+
+def run_twice(animal):
+	animal.run()
+	animal.run()
+run_twice(Animal())
+
+run_twice(Dog())
+run_twice(Cat())
+
+class Tortoies(Animal):
+    def run(self):
+	    print('Tortoise is running slowly...')
+	
+		
+run_twice(Tortoies())
+
+
+class Timer(object):
+    def run(self):
+	    print('Start...')
+	
+	
+print(type(123))
+print(type('str'))
+print(type(None))
+
+print(type(abs))
+print(type(a))
+
+
+
+print(type(123)==int)
+print(type('abc'==str))
+
+import types
+def fn():
+	pass
+print(type(fn)==types.FunctionType)
+print(type(abs)==types.BuiltinFunctionType)
+print(type(lambda x: x)==types.LambdaType)
+print(type((x for x in range(10))) == types.GeneratorType)
+
+
+a = Animal()
+d = Dog()
+
+print(isinstance(d, Dog) and isinstance(d, Animal))
+
+print(isinstance('a', str))
+print(isinstance(123, int))
+print(isinstance(b'a', bytes))
+
+
+print(isinstance([1,2,3],(list, tuple)))		
+print(isinstance((1,2,3),(list, tuple)))
+
+print(dir('ABC'))
+
+print(len('ABC'))
+print('ABC'.__len__())
+
+class MyDog(object):
+	def __len__(self):
+		return 100
+
+dog = MyDog()
+print(len(dog))
+
+
+
+
+class MyObject(object):
+	def __init__(self):
+		self.x = 9
+	def power(self):
+		return self.x * self.x
+		
+obj = MyObject()
+print(hasattr(obj, 'x'))
+print(hasattr(obj, 'y'))
+setattr(obj, 'y', 10)
+print(hasattr(obj, 'y'))
+print(obj.y)
+
+print(getattr(obj, 'z',404))
+
+print(hasattr(obj, 'power'))
+print(getattr(obj, 'power'))
+fn = getattr(obj, 'power')
+
+print(fn())
+
+def readImage(fp):
+	if hasattr(fp, 'read'):
+		return readData(fp)
+	return None
+
+
 
 		
 	
