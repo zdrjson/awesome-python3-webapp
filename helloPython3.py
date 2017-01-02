@@ -1225,16 +1225,88 @@ class Fib(object):
 				start = 0
 				a, b = 1, 1
 				L = []
-	         for x in range(stop)；
-	             if x >= start:
-		             L.append(a)
-		          a, b = b, a + b
-		     return L
+				for x in range(stop):
+					if x >= start:
+						L.append(a)
+						a, b = b, a + b
+						return L
 f = Fib()
 print(f[0:5])
+print(f[:10])
+
+
+class Student(object):
+	def __init__(self):
+		self.name = 'Michael'
+	def __getattr__(self, attr):
+		if attr=='score':
+			return 99
+		if attr=='age':
+			return lambda:25
+		return AttributeError('\'Student\' object has no attribute \'%s\'' % attr)
+
+s = Student()
+print(s.name)
+print(s.score)
+print(s.age())
+
+class Chain(object):
+	def __init__(self, path=''):
+	   self._path = path	
+	def __getattr__(self, path):
+		return Chain('%s/%s' %(self._path, path))
+		
+	def __str__(self):
+		return self._path
+	
+	__repr__ = __str__
+print(Chain().status.user.timeline.list)
 
 		
+class Student(object):
+	def __init__(self, name):
+		self.name = name
+		
+	def __call__(self):
+		print('My name is %s.' % self.name)
+		
+s = Student('Michael')
+s()
 
+print(callable(Student('xx')))
+
+print(callable(max))
+print(callable([1,2,3]))
+print(callable(None))
+print(callable('str'))
+
+from enum import Enum , unique
+Month = Enum('Month',('Jan','Feb','Mar','Apr','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
+for name, member in Month.__members__.items():
+	print(name, '=>', member,',',member.value)	
+
+@unique
+class Weekday(Enum):
+	Sun = 0
+	Mon = 1
+	Tue = 2
+	Wed = 3
+	Thu = 4
+	Fri = 5
+	Sat = 6
+
+day1 = Weekday.Mon
+print(day1)
+
+print(Weekday.Tue)
+
+print(Weekday['Tue'])
+
+
+	
+
+	
+	
 		
 
 		
