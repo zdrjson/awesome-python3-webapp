@@ -1312,8 +1312,168 @@ print(Weekday(1))
 print(day1 == Weekday(1))
 
 
+def fn(self, name='world'):
+	print('Hello, %s.'% name)
+Hello = type('Hello', (object,), dict(hello=fn))
+h = Hello()
+h.hello()
+
+print(type(Hello))
+print(type(h))
+
+class ListMetaclass(type):
+	def __new__(cls, name, bases, attrs):
+		attrs['add'] = lambda self, value: self.append(value)
+		return type.__new__(cls, name, bases, attrs)
+		
+class MyList(list, metaclass=ListMetaclass):
+	pass
+	
+	
+L = MyList()
+L.add(1)
+print(L)
+
+#class User(Model):
+#	# 定义类的属性到列的映射
+#	id = IntegerField('id')
+#	name = StringField('username')
+#	email = StringField('email')
+#	password = StringField('password')
+#	
 
 
+#n = User(id=12345, name='Michael', email='test@orm.org',password='my-pwd')
+#n.save()
+#class Field(object):
+#	def __init__(self, name, column_type):
+#		self.name = name
+#		self.colum._type = column_type
+#		
+#	def __str__(self):
+#		return '<%s: %s>' % (self.__class__.__name__, self.name)
+#
+#class StringField(Field):
+#	def __init__(self, name, colum_type):
+#		super(StringField, self).__init__(name, 'varchar(100)')
+#
+#class IntegerField(Field):
+#	def __init__(self):
+#		super(IntegerField, self).__init__(name, 'bigint')
+#		
+#class ModelMetaclass(type):
+#	def __new__(cls, name, bases, attrs):
+#		if name=='Model':
+#			return type.__new__(cls, name, bases, attrs)
+#		print('Found model: %s' % name)
+#        mappings = dict()
+#        for k, v in attrs.items():
+#	        if isinstance(v, Field):
+#		        print('Found mapping: %s ==》 %s' % (k, v))
+#		        mappings[k] = v
+#		for k in mappings.keys():
+#			attrs.pop(k)
+#		attrs['__mappings__'] = mappings
+#		attrs['__table__'] = name
+#		return type.__new__(cls, name, bases, attrs)
+#
+#
+#class Model(dict, metaclass=ModelMetaclass):
+#	def __init__(self, **kw):
+#		super(Model, self).__init__(**kw)
+#		
+#	def __getattr__(self, key):
+#		try:
+#			return self[key]
+#		except KeyError:
+#			raise AttributeError(r"'Model' object has no attribute '%s'" % key)
+#    def __setattr__(self, key, value):
+#	    self[key] = value
+#	
+#	def save(self):
+#		fields = []
+#		params = []
+#		args = []
+#		for k, v in self.__mappings.__items()
+#		    fields.append(v.name) 
+#		    params.append('?')
+#		    args.append(getattr(self, k, None))
+#		sql = 'insert into %s (%s) values (%s)' % (self.__table__, ','.join(fields),','.join(params))
+#		print('SQL: %s' % sql)
+#		print('ARGS: %s' % str(args))
+		
+		
+
+		
+		
+		
+		
+		       
+try:
+	print('try...')	
+	r = 10 / 2
+	print('result:',r)
+except ZeroDivisionError as e:
+	print('except:',e)
+finally:
+    print('finally...')
+print('END')
+
+try:
+	print('try...')
+	r = 10 / int('a')
+	print('result:',r)
+except ValueError as e:
+	print('ValueError:',e)
+except ZeroDivisionError as e:
+    print('ZeroDivisonError:', e)
+finally:
+	print('finally...')
+print('END')
+
+ 
+try:
+	print('try...')
+	r = 10 / int('2')
+	print('result:',r)
+except ValueError as e:
+	print('ValueError:',e)
+except ZeroDivisionError as e:
+	print('ZeroDivisonError:',e)
+else:
+    print('no error!')
+finally:
+	print('finally...')
+print('END')
+
+def foo():
+	pass
+
+try:
+	foo()
+except ValueError as e:
+	print('ValueError')
+except UnicodeError as e:
+	print('UnicodeError')
+
+
+def foo(s):
+	return 10 / int(s)
+
+def bar(s):
+	return foo(s) * 2
+
+def main():
+	try:
+		bar('0')
+	except Exception as e:
+		print('Error',e)
+	finally:
+		print('finally...1')
+		
+
+
+main()
 
 
 
