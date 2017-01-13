@@ -12,7 +12,7 @@ class QueueManager(BaseManager):
 
 # 把两个Queue都注册到网络上，callable参数关联了Queue对象
 
-QueueManager.register('get_task_queue', callable=lamba: task_queue)
+QueueManager.register('get_task_queue', callable=lambda:task_queue)
 QueueManager.register('get_result_queue', callable=lambda: result_queue)
 
 #绑定端口5000， 设置验证码'abc':
